@@ -1,0 +1,70 @@
+/* Set background image */
+body {
+    background-image: url('https://th.bing.com/th/id/R.8d117829ed0a2bb0789279c3fb9a3daf?rik=7UtB8m6xG4XcoA&riu=http%3a%2f%2fclipart-library.com%2fimg%2f1429038.jpg&ehk=grTMmlIb6qoa5DeFhEkPStYhNHSQbb1THdjUD8VaeiQ%3d&risl=&pid=ImgRaw&r=0');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  
+  /* Container to style the form */
+  .login-container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Styling for heading */
+  h1 {
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+  /* Input field styling */
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+  }
+  
+  /* Sign In button */
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #ff9900;
+  }
+  
+  /* Go back link */
+  a {
+    display: block;
+    margin-top: 15px;
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  

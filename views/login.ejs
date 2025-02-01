@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In</title>
+  <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+  <div class="login-container">
+    <h1>Login</h1>
+    <form action="/signinsubmit" method="POST">
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Sign In</button>
+      <a href="/logout">Go back</a>
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    </form>
+  </div>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('error')) {
+      alert(urlParams.get('error')); 
+    }
+    if (urlParams.has('message')) {
+      alert(urlParams.get('message'));  
+    }
+  </script>
+</body>
+</html>

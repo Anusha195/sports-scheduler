@@ -1,0 +1,54 @@
+/* Set background image */
+body {
+  background-image: url('https://as1.ftcdn.net/v2/jpg/01/57/38/92/1000_F_157389207_NVVK5IAUugvafEyh8Q1AHLncMbarPFhd.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: Arial, sans-serif;
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Container to align elements properly */
+.container {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+/* Styling for heading */
+h1 {
+  font-size: 2.5em;
+  margin: 10px 0;
+}
+
+/* Styling for links */
+.links {
+  margin-bottom: 20px;
+}
+
+.links a {
+  color: #ffd700;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+/* Styling for paragraph */
+p {
+  max-width: 800px;
+  margin: 20px auto;
+  line-height: 1.6;
+}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .dashboard-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .flash-message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .success {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .error {
+            background-color: #f44336;
+            color: white;
+        }
+        .dashboard-content {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .sports-section, .sessions-section {
+            width: 48%;
+            background: #e0e0e0;
+            padding: 15px;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: white;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #3d3e3e;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #464747;
+        }
+        .joined-sessions-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .session-box {
+            background: #ffffff;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+        }
+        .cancel-btn {
+            background-color: #3b3737;
+        }
+        .cancel-btn:hover {
+            background-color: #474443;
+        }
+        .logout-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .create-session {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .create-session a {
+            color: #007bff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Welcome, <%= user.firstName %></h1>
+        <% if (successMessage.length > 0) { %>
+            <div class="flash-message success">
+                <%= successMessage %>
+            </div>
+        <% } %>
+
+        <% if (errorMessage.length > 0) { %>
+            <div class="flash-message error">
+                <%= errorMessage %>
+            </div>
+        <% } %>
+
+        <div class="dashboard-content">
+            <!-- Sports Section with My Joined Sessions -->
+            <div class="sports-section">
+                <h2>Your Created Sports</h2>
+                <% if (sports.length > 0) { %>
+                    <ul>
+                        <% sports.forEach(sport => { %>
+                            <li><%= sport.name %></li>
+                        <% }) %>
+                    </ul>
+                <% } else { %>
+                    <p>No sports created yet.</p>
+                <% } %>
+                <a href="/create-sport"><button>Create New Sport</button></a>
+
+                <!-- Moved "My Joined Sessions" Under This Section -->
+                <div class="joined-sessions-container">
+                    <h2>My Joined Sessions</h2>
+                    <% if (joinedSessions.length > 0) { %>
+                        <% joinedSessions.forEach(session => { %>
+                            <div class="session-box">
+                                <strong><%= session.sport.name %></strong> - <%= session.dateTime %> at <%= session.venue %>
+                                <form action="/cancel-session/<%= session.id %>" method="POST">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <input type="text" name="reason" placeholder="Reason for cancellation" required>
+                                    <button type="submit" class="cancel-btn">Cancel</button>
+                                </form>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <p>No joined sessions.</p>
+                    <% } %>  
+                </div>
+            </div>
+
+            <!-- Available Sessions Section -->
+            <div class="sessions-section">
+                <h2>Available Sessions</h2>
+                <% if (sessions.length > 0) { %>
+                    <ul>
+                        <% sessions.forEach(session => { %>
+                            <li>
+                                <strong><%= session.sport.name %></strong> - 
+                                <%= session.dateTime %> at <%= session.venue %>
+                                <br>
+                                <div style="display: flex; gap: 10px;">
+                                    <form action="/delete-session/<%= session.id %>" method="POST">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <button type="submit" class="delete-btn">Delete</button>
+                                    </form>
+                                    <form action="/join-session/<%= session.id %>" method="POST">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <button type="submit" class="join-btn">Join</button>
+                                    </form>
+                                </div>
+                            </li>
+                        <% }) %>
+                    </ul>
+                <% } else { %>
+                    <p>No sessions created yet.</p>
+                <% } %>
+            </div>
+        </div>
+
+        <div class="create-session">
+            <a href="/create-session">Create a New Session</a>
+        </div>
+
+        <div class="logout-container">
+            <a href="/logout"><button>Logout</button></a>
+        </div>
+    </div>
+</body>
+</html>
