@@ -44,23 +44,24 @@ The **Sports Scheduler** web application is designed to help users organize and 
 
 ### Here are some screenshots of the sports scheduler i have created
 
-### **1. Sign In Page**  
+### **1. Main Dashboard View**  
+![Dashboard](assets/images/dashboard.png) 
+
+### **2. Sign In Page**  
 ![Sign In](assets/images/signin.png)  
 
-### **2. Sign Up Page**  
+### **3. Sign Up Page**  
 ![Sign Up](assets/images/signup.png)  
 
-### **3. Admin Dashboard**  
+### **4. Admin Dashboard**  
 ![Admin Dashboard](assets/images/admin.png)  
 
-### **4. Player Dashboard**  
+### **5. Player Dashboard**  
 ![Player Dashboard](assets/images/player.png)  
 
-### **5. Session Management**  
+### **6. Session Management**  
 ![Session Management](assets/images/session.png)  
 
-### **6. Main Dashboard View**  
-![Dashboard](assets/images/dashboard.png) 
 
 ## 🛠️ Technologies Used
 - **Frontend:** HTML, CSS, EJS
